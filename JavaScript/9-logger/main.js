@@ -2,7 +2,10 @@
 
 const fsp = require('node:fs').promises;
 const path = require('node:path');
-const server = require('./ws.js');
+const config = require('./config.js');
+const transport = config.transport ? `./${config.transport}.js` : './ws.js';
+console.log(transport);
+const server = require(transport);
 const staticServer = require('./static.js');
 const load = require('./load.js');
 const db = require('./db.js');

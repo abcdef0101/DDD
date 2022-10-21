@@ -8,7 +8,7 @@ const config = {
             user: 'marcus',
             password: 'marcus',
         },
-
+    transport: 'ws',
 };
 
 module.exports = config;
