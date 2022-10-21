@@ -3,9 +3,7 @@
 const fsp = require('node:fs').promises;
 const path = require('node:path');
 const config = require('./config.js');
-const transport = config.transport ? `./${config.transport}.js` : './ws.js';
-console.log(transport);
-const server = require(transport);
+const transport = require(`./transport/${config.api.transport}.js`);
 const staticServer = require('./static.js');
 const load = require('./load.js');
 const db = require('./db.js');
@@ -30,5 +28,5 @@ const routing = {};
   }
 
   staticServer('./static', 8000);
-  server(routing, 8001);
+  transport(routing, 8001, logger);
 })();
